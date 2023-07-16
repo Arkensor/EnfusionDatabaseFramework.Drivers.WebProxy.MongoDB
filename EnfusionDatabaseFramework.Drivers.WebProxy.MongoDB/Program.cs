@@ -19,4 +19,8 @@ var app = builder.Build();
 // Inject service api routes
 app.AddDbProxy();
 
-app.Run();
+app.Start();
+
+Console.WriteLine($"MongoDB EnfusionDatabaseFramework proxy is now listening on {string.Join(", ", app.Urls)}.");
+
+app.WaitForShutdown();
