@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: enfusiondatabaseframework-proxy-mongodb
+  IMAGE_NAME: ${{ github.repository_owner }}/enfusiondatabaseframework-proxy-mongodb
 
 jobs:
   build:
