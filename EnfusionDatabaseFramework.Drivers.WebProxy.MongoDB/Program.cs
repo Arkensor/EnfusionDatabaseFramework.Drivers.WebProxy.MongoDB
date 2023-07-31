@@ -8,8 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls($"http://{builder.Configuration.GetValue("BindHost", "*")}:{builder.Configuration.GetValue("BindPort", "8008")}");
 
 // Setup connection to the target MongoDB server
-builder.Services.AddSingleton<IMongoClient>(new MongoClient(
-    $"mongodb://{builder.Configuration.GetValue("DbHost", "localhost")}:{builder.Configuration.GetValue("DbPort", "27017")}"));
+var connectionString = builder.Configuration["DbConnectionString"];
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    var host = builder.Configuration.GetValue("DbHost", "localhost");
+    var port = builder.Configuration.GetValue("DbPort", "27017");
+    var user = builder.Configuration["DbUser"];
+    var password = builder.Configuration["DbPassword"];
+    string authString = string.IsNullOrWhiteSpace(user) ? string.Empty : $"{user}:{password}@";
+    connectionString = $"mongodb://{authString}{host}:{port}";
+}
+
+builder.Services.AddSingleton<IMongoClient>(new MongoClient(connectionString));
 
 // Add mongodb proxy service implementation
 builder.Services.AddSingleton<IDbWebProxyService, MongoDbWebProxyService>();

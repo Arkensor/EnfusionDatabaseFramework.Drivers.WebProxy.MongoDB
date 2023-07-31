@@ -8,7 +8,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EnfusionDatabaseFramework.Drivers.WebProxy.Core" Version="0.9.0" />
+		<PackageReference Include="EnfusionDatabaseFramework.Drivers.WebProxy.Core" Version="1.0.0" />
 		<PackageReference Include="MongoDB.Driver" Version="2.20.0" />
 	</ItemGroup>
 	
