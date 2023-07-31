@@ -3,7 +3,7 @@ name: Docker tagged release
 on:
   workflow_dispatch:
   push:
-    tags: [ '*.*.*' ]
+    tags: [ 'v*.*.*' ]
 
 env:
   REGISTRY: ghcr.io
@@ -31,9 +31,6 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=semver,pattern={{version}},value=v1.0.0
-
-      - name: Group of log lines
-        run: echo ${{ steps.meta.outputs.tags }}
 
       - name: Log into Docker registry
         uses: docker/login-action@v2
