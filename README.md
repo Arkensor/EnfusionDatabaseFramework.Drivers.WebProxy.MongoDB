@@ -25,11 +25,11 @@ services:
       - ./data/mongodb:/data/db
 ```
 4. Open a command line in the folder and type `docker compose up -d`
-5. If everything works you can now set up your [connection info](https://github.com/Arkensor/EnfusionDatabaseFramework/blob/armareforger/docs/drivers/mongodb.md) in the Arma Reforger Workbench and use a tool like [MongoDB Compass](https://www.mongodb.com/try/download/compass) to connect to the MongoDB and view your stored data.
+5. If everything works you can now set up your [connection info](https://github.com/Arkensor/EnfusionDatabaseFramework/blob/armareforger/docs/drivers/proxy-mongodb.md) in the Arma Reforger Workbench and use a tool like [MongoDB Compass](https://www.mongodb.com/try/download/compass) to connect to the MongoDB and view your stored data.
 
 ### Troubleshooting
 If MongoDB refuses to start/is unreachable check that the folder permissions are set correctly.  
-On Linux you might need to execute this command in the folder you created: `chmod -R a+rwx data/`
+On Linux, you might need to execute this command in the folder you created: `chmod -R a+rwx data/`
 
 ## 🛠️ Running it without Docker
 If for some reason you prefer not to use Docker then right now there are no pre-compiled binaries available. You can however clone this project, open it in Visual Studio and publish it for whatever native runtime you need.
@@ -44,4 +44,4 @@ Options can be passed via the environment variables or startup parameters with `
 - `DbConnectionString` alternative to the above options to provide the connection string manually e.g. `mongodb+srv://user:password@my.cluster.mongodb.net/?retryWrites=true&w=majority`
 - `BindHost` Ip/hostname to bind the proxy to. Default: `*` 
 - `BindPort` Port the proxy will listen on. Default: `8008` 
-- `IPWhitelist` Restrict the IPs that are allowed to call the proxy as a `,` seperated list. Default: `No restrictions`
+- `IPWhitelist` Restrict the IPs that are allowed to call the proxy as a `,` separated list. Default: `No restrictions`
